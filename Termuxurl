@@ -1,0 +1,312 @@
+#!/data/data/com.termux/files/usr/bin/bash
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+LGREEN='\033[1;32m'
+CYAN='\033[0;36m'
+BLUE='\033[0;34m'
+LGRAY='\033[0;37m'
+YELLOW='\033[1;33m'
+#*******
+#Black        0;30     Dark Gray     1;30
+#Red          0;31     Light Red     1;31
+#Green        0;32     Light Green   1;32
+#Brown/Orange 0;33     Yellow        1;33
+#Blue         0;34     Light Blue    1;34
+#Purple       0;35     Light Purple  1;35
+#Cyan         0;36     Light Cyan    1;36
+#Light Gray   0;37     White         
+#**********
+printf "$RED"
+echo "______________________________________"
+echo ""
+figlet " " CODEX45
+printf "$CYAN"
+echo "               Script Modified by;"
+printf "$LGREEN"
+echo "                       semsabiduria"
+printf "$RED"
+echo "______________________________________"
+printf "$LGRAY"
+echo "Description: Audio/Video Downloader"
+echo "Tools: Quick Edit+, Termux,MIA3"
+echo " Supported Sites: Youtube.com,Pornhub.com"
+echo " Dailymotion and Facebook and many more..."
+echo " Playlist Content can be downloaded also "
+printf "$NC"
+url=$1
+echo " Url Source:"
+printf "$BLUE"
+echo $url
+printf "$NC"
+sleep 5
+video_grab(){
+#start of ytdl script
+title=$(youtube-dl --get-title  $1)
+echo "$title"
+echo "_________________________________"
+echo "             Video Grabber "
+echo "Source: "
+echo  "$1"
+echo "_________________________________"
+echo "  1. Audio only (mp3)"
+echo "  2. Audio Only(m4a)"
+echo "  3. Dowload via tor network Video"
+echo "  4. Download via tor Audio Only"
+echo "  5. 480p Video "
+echo "  6. 720  Video  "
+echo "  7. 1080p Video"
+echo "  8. 2k Video   "
+echo "  9. 4k Video    "
+echo "  0. Expert Mode"
+echo "  t. m4a playlist"
+echo "  q. quit script"
+echo "  u. update core downloader"
+echo "________________________________"
+echo ""
+
+
+echo ""
+
+
+echo " Press between 0 to 9 or Enter"
+
+echo  ""
+
+
+myorder='--no-warnings --newline --no-mtime --yes-playlist -o /data/data/com.termux/files/home/storage/shared/Youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -f'
+command='--no-warnings --newline --no-mtime --all-subs -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+#title=$(youtube-dl --get-title $1)
+#subs=$(youtube-dl --list-subs $1)
+#echo "$title"
+
+read option
+echo -e "Parsing Data please wait......"
+
+
+case $option in
+1 )
+
+command='--no-warnings --newline --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
+youtube-dl $1
+;;
+2 )
+
+command='--no-warnings --newline --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+echo "$command 140" > ~/.config/youtube-dl/config
+youtube-dl $1
+;;
+3 )
+
+command='--no-warnings --newline --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
+youtube-dl $1
+
+;;
+4 )
+
+command='--no-warnings --newline --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
+youtube-dl $1
+;;
+5 )
+
+echo "$command \"best[height<=480]\"" > ~/.config/youtube-dl/config
+youtube-dl $1
+;;
+6 )
+
+echo "$command \"best[height<=760]\"" > ~/.config/youtube-dl/config
+youtube-dl $1
+;;
+7 )
+
+echo "$command \"best[height<=1150]\"" > ~/.config/youtube-dl/config
+youtube-dl $1
+;;
+8 )
+
+echo "$command \"best[height<=1440]\"" > ~/.config/youtube-dl/config
+youtube-dl $1
+;;
+9 )
+
+echo "$command \"best[height<=2160]\"" > ~/.config/youtube-dl/config
+youtube-dl $1
+;;
+0 )
+
+youtube-dl -F $1
+echo ""
+echo "Format Code:"
+echo "137 : HDVideo no Audio"
+echo  "140 : HDAudio"
+echo  "Check the display for correct format code"
+echo  " Enter Format Code"
+read fcode
+echo ""
+echo "$command $fcode" > ~/.config/youtube-dl/config
+youtube-dl $1
+
+;;
+q )
+exit
+;;
+u)
+pip install --upgrade youtube_dl
+;;
+t)
+echo "$myorder 140" > ~/.config/youtube-dl/config
+youtube-dl $1
+;;
+
+* )
+
+echo -e "Finding Best Quality of Your Video"
+echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
+youtube-dl $1
+;;
+
+esac
+sleep 5
+termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
+exit
+#end of youtube
+}
+
+#_________________________________
+genvid(){
+echo " This will download HD Videos"
+echo "Souce:$1"
+echo "Save to:$2"
+echo "Description:$3"
+dlt=$(youtube-dl --get-title  $1)
+saveto=$2
+echo "Title: $dlt"
+   
+    # check if directory exist or not
+    if [[ ! -d $saveto ]]; then
+        # directory doesn't exist create it for use.
+        mkdir $saveto
+    fi
+#command='--no-warnings --newline --no-mtime --all-subs -o  /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+command="--no-warnings --newline --no-mtime --all-subs -o  $saveto/%(title)s.%(ext)s -f"
+
+echo -e "Finding Best Quality of Your Video $3"
+echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
+youtube-dl $1
+termux-notification -t "Download Complete" -c "$dlt" --sound --vibrate 800 --priority high
+
+}
+#__________________________________
+case $url  in
+ *"open.spotify.com"* )
+    echo "spotify"
+          #start of spotify
+    SONG_DIR="$HOME/storage/shared/songs" 
+    NODE_ENV=$(which node)
+    SPOTIFYDL=$(which spotifydl)
+
+    echo "Spotifydl"
+    # check if directory exist or not
+    if [[ ! -d $SONG_DIR ]]; then
+        # directory doesn't exist create it for use.
+        mkdir $SONG_DIR
+    fi
+    # Download the song to song directory.
+$NODE_ENV $SPOTIFYDL $url -o $SONG_DIR
+#spotifydl -o $SONG_DIR $url
+    read -n 1 -s -p "Press any key to exit..."
+termux-notification -t "Download Complete" -c "$url" --sound --vibrate 800 --priority hig    
+;;
+#end of spotify script
+*"/playlist"* )
+printf "$GREEN"
+echo "Playlist Link Detected"
+echo " Create additional Folder For your Mp3"
+echo "Folder Name: Album Or Artist Eg. TinaArena"
+read folname
+        
+printf "$NC"
+mp3dir="$HOME/storage/shared/mp3s/$folname"   
+    # check if directory exist or not
+    if [[ ! -d $mp3dir ]];  then
+        # directory doesn't exist create it for use.
+        mkdir $mp3dir
+    fi
+command="--no-warnings  --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
+echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
+youtube-dl $url
+title=$(youtube-dl --get-title  $url)
+termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
+;;
+*"music.youtube"* )
+
+
+mp3dir="$HOME/storage/shared/mp3s"   
+    # check if directory exist or not
+    if [[ ! -d $mp3dir ]];  then
+        # directory doesn't exist create it for use.
+        mkdir $mp3dir
+    fi
+command="--no-warnings --console-title --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
+echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
+youtube-dl $url
+title=$(youtube-dl --get-title  $url)
+termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
+;;
+
+
+*"pornhub.com"* )
+printf "$YELLOW"
+
+echo "Warning: Adult Site,Please use VPN"
+sleep 5
+Printf "$NC"
+genvid $1 "/data/data/com.termux/files/home/storage/shared/phubs/"  "Pornhub.com"
+;;
+
+*"youtu.be"* )
+video_grab $url
+;;
+*"youtube"* )
+command='--no-warnings --newline --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+echo "$command 140" > ~/.config/youtube-dl/config
+youtube-dl $1
+;;
+*fb.watch* )
+genvid $url  "/data/data/com.termux/files/home/storage/shared/Fbvideos" "Fb Video Grabber"
+
+;;
+
+
+* )
+echo "Website Not Implemented"
+echo "1. Try Video Downloader"
+echo  "2. Try File Downloader"
+echo "Select Option"
+read ptype
+case  $ptype in
+1)
+genvid $url  "/data/data/com.termux/files/home/storage/shared/Video" "Universal Video"
+;;
+2)
+cd /sdcard/Download
+echo "Enter UserName"
+read uname
+echo "Enter Password"
+read pword
+wget --user=$uname --password=$pword $1
+;;
+esac
+
+termux-notification -t "Download Complete" -c "$1" --sound --vibrate 800 --priority hig
+#wget $1
+;;
+esac
+
+
+
+
+
+
