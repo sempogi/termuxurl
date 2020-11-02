@@ -10,7 +10,6 @@ pkg install -y nodejs ffmpeg #mp3 sipport
 # Get spotify-dl from npmjs
 echo "[ spotifydl ] Installing spotify-dl"
 npm install -g spotify-dl
-
 # Setup app sharing script
 echo "[ spotifydl ] Setting up scripts..."
 
@@ -42,4 +41,5 @@ echo "Downloading and installing termux-url-opener"
 curl https://raw.githubusercontent.com/sempogi/termuxurl/main/Termuxurl -o ~/bin/termux-url-opener
 sleep 2
 dos2unix ~/bin/termux-url-opener
-echo " Video Downloader Install Successful"'
+echo "Success!!!"
+
