@@ -38,7 +38,6 @@ mkdir -p ~/.config/youtube-dl
 echo "Downloading and installing termux-url-opener"
 curl https://raw.githubusercontent.com/sempogi/termuxurl/main/Termuxurl -o ~/bin/termux-url-opener
 dos2unix ~/bin/termux-url-opener
-pip install --update youtube_dl
+pip install --upgrade youtube_dl
 youtube-dl --version
 echo "Success!!!"
-E
