@@ -3,6 +3,7 @@
 #credit to raj for yt installer and the i forgot.(Update soon)
 echo "Updating default packages"
 apt update && apt -y upgrade
+pkg install git
 # Install packages
 pkg install -y nodejs ffmpeg #mp3 sipport
 
