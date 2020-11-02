@@ -3,6 +3,8 @@
 echo "Updating default packages"
 apt update && apt -y upgrade
 pkg install git
+apt install python
+python3 -m pip install --upgrade pip
 # Install packages
 pkg install -y nodejs ffmpeg 
 # Get spotify-dl from npmjs
@@ -36,5 +38,7 @@ mkdir -p ~/.config/youtube-dl
 echo "Downloading and installing termux-url-opener"
 curl https://raw.githubusercontent.com/sempogi/termuxurl/main/Termuxurl -o ~/bin/termux-url-opener
 dos2unix ~/bin/termux-url-opener
+pip install --update youtube_dl
+youtube-dl --version
 echo "Success!!!"
-
+E
