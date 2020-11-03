@@ -315,7 +315,7 @@ case $url  in
                     printf "$NC"
                     title=$(youtube-dl --get-title  $url)
                      termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
-             ; ;
+             ;;
 
 
              *"pornhub.com"* )
