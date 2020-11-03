@@ -11,8 +11,8 @@ ytdir="~/storage/shared/youtube"
 if [[ ! -d $ytdir ]]; then
         # directory doesn't exist create it for use.
         mkdir $ytdir
-    else 
-         ytversion=youtube-dl --version
+    
+         ytversion=youtube-dl --version;
          echo "Youtube: Dir Ok"
          echo  "Youtube-dl: $ytversion"
     fi
