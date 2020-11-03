@@ -268,7 +268,7 @@ printf "$YELLOW"
 
 echo "Warning: Adult Site,Please use VPN"
 sleep 5
-Printf "$NC"
+printf "$NC"
 genvid $1 "/data/data/com.termux/files/home/storage/shared/phubs/"  "Pornhub.com"
 ;;
 
