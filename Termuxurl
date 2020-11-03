@@ -11,8 +11,8 @@ ytdir="~/storage/shared/youtube"
 if [[ ! -d $ytdir ]]; then
         # directory doesn't exist create it for use.
         mkdir $ytdir
-    
-         ytversion=youtube-dl --version;
+    else
+         ytversion=youtube-dl --version
          echo "Youtube: Dir Ok"
          echo  "Youtube-dl: $ytversion"
     fi
@@ -65,8 +65,8 @@ echo "             Video Grabber "
 echo "Source: "
 echo  "$1"
 echo "_________________________________"
-echo "  1. Audio only (mp3)"
-echo "  2. Audio Only(m4a)"
+echo "  1. Audio only mp3"
+echo "  2. Audio Only m4a"
 echo "  3. Dowload via tor network Video"
 echo "  4. Download via tor Audio Only"
 echo "  5. 480p Video "
