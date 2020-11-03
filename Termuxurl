@@ -101,9 +101,6 @@ echo  ""
 
 myorder='--no-warnings --no-progress --no-mtime --yes-playlist -o /data/data/com.termux/files/home/storage/shared/Youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -f'
 command='--no-warnings --no-progress --no-mtime --all-subs -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
-#title=$(youtube-dl --get-title $1)
-#subs=$(youtube-dl --list-subs $1)
-#echo "$title"
 
 read option
 echo -e "Parsing Data please wait......"
@@ -222,6 +219,7 @@ printf "$NC"
 ;;
 
 esac
+
 sleep 5
 termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
 exit
@@ -255,117 +253,120 @@ termux-notification -t "Download Complete" -c "$dlt" --sound --vibrate 800 --pri
 
 }
 #__________________________________
+
+
 case $url  in
- *"open.spotify.com"* )
-    echo "spotify"
+       *"open.spotify.com"* )
+                echo "spotify"
           #start of spotify
-    SONG_DIR="$HOME/storage/shared/songs" 
-    NODE_ENV=$(which node)
-    SPOTIFYDL=$(which spotifydl)
+               SONG_DIR="$HOME/storage/shared/songs" 
+               NODE_ENV=$(which node)
+               SPOTIFYDL=$(which spotifydl)
 
-    echo "Spotifydl"
-    # check if directory exist or not
-    if [[ ! -d $SONG_DIR ]]; then
-        # directory doesn't exist create it for use.
-        mkdir $SONG_DIR
-    fi
-    # Download the song to song directory.
-$NODE_ENV $SPOTIFYDL $url -o $SONG_DIR
-#spotifydl -o $SONG_DIR $url
-    read -n 1 -s -p "Press any key to exit..."
-termux-notification -t "Download Complete" -c "$url" --sound --vibrate 800 --priority hig    
-;;
-#end of spotify script
-*"/playlist"* )
-printf "$GREEN"
-echo "Playlist Link Detected"
-echo " Create additional Folder For your Mp3"
-echo "Folder Name: Album Or Artist Eg. TinaArena"
-read folname
+                 echo "Spotifydl"
+                   # check if directory exist or not
+                 if [[ ! -d $SONG_DIR ]]; then
+                   # directory doesn't exist create it for use.
+                          mkdir $SONG_DIR
+                  fi
+                 # Download the song to song directory.
+                   $NODE_ENV $SPOTIFYDL $url -o $SONG_DIR
+                   #spotifydl -o $SONG_DIR $url
+                    read -n 1 -s -p "Press any key to exit..."
+                    termux-notification -t "Download Complete" -c "$url" --sound --vibrate 800 --priority hig    
+           ;;
+                 #end of spotify script
+
+         *"/playlist"* )
+                printf "$GREEN"
+                 echo "Playlist Link Detected"
+                 echo " Create additional Folder For your Mp3"
+                 echo "Folder Name: Album Or Artist Eg. TinaArena"
+                  read folname
         
-printf "$NC"
-mp3dir="$HOME/storage/shared/mp3s/$folname"   
-    # check if directory exist or not
-    if [[ ! -d $mp3dir ]];  then
-        # directory doesn't exist create it for use.
-        mkdir $mp3dir
-    fi
-command="--no-warnings --no-progress --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
-echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
-printf "$GREEN"
-youtube-dl $url
-printf "$NC"
-title=$(youtube-dl --get-title  $url)
-termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
-;;
+                  printf "$NC"
+                  mp3dir="$HOME/storage/shared/mp3s/$folname"   
+                           # check if directory exist or not
+                  if [[ ! -d $mp3dir ]];  then
+                            # directory doesn't exist create it for use.
+                              mkdir $mp3dir
+                   fi
+                   command="--no-warnings --no-progress --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
+                   echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
+                    printf "$GREEN"
+                    youtube-dl $url
+                    printf "$NC"
+                    title=$(youtube-dl --get-title  $url)
+                    termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
+               ;;
 
 
-*"music.youtube"* )
+             *"music.youtube"* )
+                     mp3dir="$HOME/storage/shared/mp3s"   
+                        # check if directory exist or not
+                     if [[ ! -d $mp3dir ]];  then
+                        # directory doesn't exist create it for use.
+                                mkdir $mp3dir
+                     fi
+                     command="--no-warnings --no-progress --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
+                     echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
+                     printf "$GREEN"
+                    youtube-dl $url
+                    printf "$NC"
+                    title=$(youtube-dl --get-title  $url)
+                     termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
+             ; ;
 
 
-mp3dir="$HOME/storage/shared/mp3s"   
-    # check if directory exist or not
-    if [[ ! -d $mp3dir ]];  then
-        # directory doesn't exist create it for use.
-        mkdir $mp3dir
-    fi
-command="--no-warnings --no-progress --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
-echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
-printf "$GREEN"
-youtube-dl $url00
-printf "$NC"
-title=$(youtube-dl --get-title  $url)
-termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
-;;
+             *"pornhub.com"* )
+                    printf "$YELLOW"
+                    echo "Warning: Adult Site,Please use VPN"
+                    sleep 5
+                    printf "$NC"
+                    genvid $1 "/data/data/com.termux/files/home/storage/shared/phubs/"  "Pornhub.com"
+              ;;
 
 
-*"pornhub.com"* )
-printf "$YELLOW"
-echo "Warning: Adult Site,Please use VPN"
-sleep 5
-printf "$NC"
-genvid $1 "/data/data/com.termux/files/home/storage/shared/phubs/"  "Pornhub.com"
-;;
+            *"youtu.be"* )
+                  video_grab $url
+            ;;
+            
+           *"youtube"* )
+                command='--no-warnings --no-progress --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+                echo "$command 140" > ~/.config/youtube-dl/config
+                 printf "$GREEN"
+                 youtube-dl $1
+                 printf "$NC"
+            ;;
+
+          *fb.watch* )
+                genvid $url  "/data/data/com.termux/files/home/storage/shared/Fbvideos" "Fb Video Grabber"
+            ;;
 
 
-*"youtu.be"* )
-video_grab $url
-;;
-*"youtube"* )
-command='--no-warnings --no-progress --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
-echo "$command 140" > ~/.config/youtube-dl/config
-printf "$GREEN"
-youtube-dl $1
-printf "$NC"
-;;
-
-*fb.watch* )
-genvid $url  "/data/data/com.termux/files/home/storage/shared/Fbvideos" "Fb Video Grabber"
-;;
-
-
-* )
-echo "Website Not Implemented"
-echo "1. Try Video Downloader"
-echo  "2. Try File Downloader"
-echo "Select Option"
-    read ptype
-    case  $ptype in
-       1)
-         genvid $url  "/data/data/com.termux/files/home/storage/shared/Video" "Universal Video"
-       ;;
-       2)
-         cd /sdcard/Download
-         echo "Enter UserName"
-         read uname
-         echo "Enter Password"
-         read pword
-         wget --user=$uname --password=$pword $1
-       ;;
-       esac
+            * )
+                 echo "Website Not Implemented"
+                 echo "1. Try Video Downloader"
+                 echo  "2. Try File Downloader"
+                 echo "Select Option"
+                 read ptype
+                       case  $ptype in
+                            1)
+                                 genvid $url  "/data/data/com.termux/files/home/storage/shared/Video" "Universal Video"
+                             ;;
+                            2)
+                                 cd /sdcard/Download
+                                echo "Enter UserName"
+                                read uname
+                                echo "Enter Password"
+                                read pword
+                                wget --user=$uname --password=$pword $1
+                              ;;
+                       esac
 
 termux-notification -t "Download Complete" -c "$1" --sound --vibrate 800 --priority hig
 
+;;
 esac
 
 exit
