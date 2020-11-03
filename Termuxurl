@@ -13,7 +13,7 @@ if [[ ! -d $ytdir ]]; then
         mkdir $ytdir
     else 
          ytversion=youtube-dl --version
-         echo "Youtube: Dir Ok
+         echo "Youtube: Dir Ok"
          echo  "Youtube-dl: $ytversion"
     fi
 
