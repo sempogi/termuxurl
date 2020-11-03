@@ -117,7 +117,7 @@ echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
-::
+;;
 2 )
 
 command='--no-warnings --no-progress --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
