@@ -25,7 +25,7 @@ if [[ ! -d $ytdir ]]; then
          printf "$NC"
          echo "checking ytdl update....."
          printf "$GREEN"
-         echo pip install --upgrade youtube_dl
+         pip install --upgrade youtube_dl
 
     fi
 
