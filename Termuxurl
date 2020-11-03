@@ -10,10 +10,10 @@ echo "Updating Script"
 curl https://raw.githubusercontent.com/sempogi/termuxurl/main/Termuxurl -o ~/bin/termux-url-opener
 dos2unix ~/bin/termux-url-opener
 pip install --upgrade youtube_dl
-ytdir="$HOME/storage/shared/youtube"
-if [[ ! -d $ytdir ]]; then
+
+if [[ ! -d "~/storage/shared/youtube" ]]; then
         # directory doesn't exist create it for use.
-        mkdir $ytdir
+        mkdir ~/storage/shared/youtube
     else
          ytversion=youtube-dl --version
          echo "Youtube: Dir Ok"
