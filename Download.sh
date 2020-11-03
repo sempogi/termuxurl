@@ -1,4 +1,5 @@
 clear
+apt-get --yes install curl
 pkg install curl
 cd #home directory
 curl https://raw.githubusercontent.com/sempogi/termuxurl/main/installytandspoti.sh -o spoty.sh
