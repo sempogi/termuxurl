@@ -330,6 +330,8 @@ echo "$command 140" > ~/.config/youtube-dl/config
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
+;;
+
 *fb.watch* )
 genvid $url  "/data/data/com.termux/files/home/storage/shared/Fbvideos" "Fb Video Grabber"
 
@@ -361,6 +363,7 @@ termux-notification -t "Download Complete" -c "$1" --sound --vibrate 800 --prior
 ;;
 esac
 
+exit
 
 
 
