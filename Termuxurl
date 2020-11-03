@@ -64,6 +64,7 @@ printf "$BLUE"
 echo $url
 printf "$NC"
 sleep 5
+
 video_grab(){
 #start of ytdl script
 title=$(youtube-dl --get-title  $1)
@@ -118,6 +119,7 @@ printf "$GREEN"
 youtube-dl $1
 printf "$NC"
 ;;
+
 2 )
 
 command='--no-warnings --no-progress --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
@@ -126,6 +128,7 @@ printf "$GREEN"
 youtube-dl $1
 printf "$NC"
 ;;
+
 3 )
 
 command='--no-warnings --no-progress --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
@@ -134,51 +137,52 @@ printf "$GREEN"
 youtube-dl $1
 printf "$NC"
 ;;
-4 )
 
+4 )
 command='--no-warnings --no-progress --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
 ;;
-5 )
 
+
+5 )
 echo "$command \"best[height<=480]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
 ;;
-6 )
 
+6 )
 echo "$command \"best[height<=760]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
 ;;
-7 )
 
+7 )
 echo "$command \"best[height<=1150]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
 ;;
-8 )
 
+8 )
 echo "$command \"best[height<=1440]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
 ;;
-9 )
 
+9 )
 echo "$command \"best[height<=2160]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
 ;;
-0 )
 
+0 )
 youtube-dl -F $1
 echo ""
 echo "Format Code:"
@@ -192,14 +196,16 @@ echo "$command $fcode" > ~/.config/youtube-dl/config
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
-
 ;;
+
 q )
 exit
 ;;
+
 u)
 pip install --upgrade youtube_dl
 ;;
+
 t)
 echo "$myorder 140" > ~/.config/youtube-dl/config
 printf "$GREEN"
@@ -208,7 +214,6 @@ printf "$NC"
 ;;
 
 * )
-
 echo -e "Finding Best Quality of Your Video"
 echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
 printf "$GREEN"
@@ -293,6 +298,8 @@ printf "$NC"
 title=$(youtube-dl --get-title  $url)
 termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
 ;;
+
+
 *"music.youtube"* )
 
 
@@ -314,12 +321,12 @@ termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --p
 
 *"pornhub.com"* )
 printf "$YELLOW"
-
 echo "Warning: Adult Site,Please use VPN"
 sleep 5
 printf "$NC"
 genvid $1 "/data/data/com.termux/files/home/storage/shared/phubs/"  "Pornhub.com"
 ;;
+
 
 *"youtu.be"* )
 video_grab $url
@@ -334,7 +341,6 @@ printf "$NC"
 
 *fb.watch* )
 genvid $url  "/data/data/com.termux/files/home/storage/shared/Fbvideos" "Fb Video Grabber"
-
 ;;
 
 
@@ -343,24 +349,23 @@ echo "Website Not Implemented"
 echo "1. Try Video Downloader"
 echo  "2. Try File Downloader"
 echo "Select Option"
-read ptype
-case  $ptype in
-1)
-genvid $url  "/data/data/com.termux/files/home/storage/shared/Video" "Universal Video"
-;;
-2)
-cd /sdcard/Download
-echo "Enter UserName"
-read uname
-echo "Enter Password"
-read pword
-wget --user=$uname --password=$pword $1
-;;
-esac
+    read ptype
+    case  $ptype in
+       1)
+         genvid $url  "/data/data/com.termux/files/home/storage/shared/Video" "Universal Video"
+       ;;
+       2)
+         cd /sdcard/Download
+         echo "Enter UserName"
+         read uname
+         echo "Enter Password"
+         read pword
+         wget --user=$uname --password=$pword $1
+       ;;
+       esac
 
 termux-notification -t "Download Complete" -c "$1" --sound --vibrate 800 --priority hig
-#wget $1
-;;
+
 esac
 
 exit
