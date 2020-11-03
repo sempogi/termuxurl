@@ -22,8 +22,9 @@ if [[ ! -d $ytdir ]]; then
          ytversion=$(youtube-dl --version)
          echo "Youtube: Dir Ok"
          echo  "Youtube-dl: $ytversion"
-         printf "$CYAN"
+         printf "$NC"
          echo "checking ytdl update....."
+         printf "$GREEN"
          echo pip install --upgrade youtube_dl
 
     fi
