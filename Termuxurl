@@ -6,6 +6,17 @@ CYAN='\033[0;36m'
 BLUE='\033[0;34m'
 LGRAY='\033[0;37m'
 YELLOW='\033[1;33m'
+
+ytdir="~/storage/shared/youtube"
+if [[ ! -d $ytdir ]]; then
+        # directory doesn't exist create it for use.
+        mkdir $ytdir
+    else 
+         ytversion=youtube-dl --version
+         echo "Youtube: Dir Ok
+         echo  "Youtube-dl: $ytversion"
+    fi
+
 echo "Updating Script"
 curl https://raw.githubusercontent.com/sempogi/termuxurl/main/Termuxurl -o ~/bin/termux-url-opener
 dos2unix ~/bin/termux-url-opener
