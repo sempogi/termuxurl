@@ -288,9 +288,9 @@ case $url  in
                  echo " Create additional Folder For your Mp3"
                  echo "Folder Name: Album Or Artist Eg. TinaArena"
                   read folname
-        
+   
                   printf "$NC"
-                  mp3dir="$HOME/storage/shared/mp3s/$'folname'"   
+                  mp3dir="$HOME/storage/shared/mp3s/$folname"   
                            # check if directory exist or not
                   if [[ ! -d $mp3dir ]];  then
                             # directory doesn't exist create it for use.
