@@ -23,7 +23,7 @@ if [[ ! -d $ytdir ]]; then
          ytversion=$(youtube-dl --version)
          echo "Youtube: Dir Ok"
          echo  "Youtube-dl: $ytversion"
-         AtomicParsely --version
+         AtomicParsley --version
          printf "$NC"
          echo "checking ytdl update....."
          printf "$GREEN"
