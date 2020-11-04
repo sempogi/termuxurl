@@ -292,7 +292,7 @@ case $url  in
                             # directory doesn't exist create it for use.
                               mkdir $mp3dir
                    fi
-                   command="--no-warnings --no-progress --skip-unavailable-fragments --no-mtime -i --embed-thumbnail-o $mp3dir/%(title)s.%(ext)s -f"
+                   command="--no-warnings --no-progress --skip-unavailable-fragments --no-mtime --embed-thumbnail -i -o $mp3dir/%(title)s.%(ext)s -f"
                    echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
                     printf "$YELLOW"
                     youtube-dl $url
