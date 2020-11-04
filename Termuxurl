@@ -121,7 +121,7 @@ printf "$NC"
 2 )
 
 command='--no-warnings --no-progress --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
-echo "$command bestaudio" > ~/.config/youtube-dl/config
+echo "$command --extract-audio " > ~/.config/youtube-dl/config
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
