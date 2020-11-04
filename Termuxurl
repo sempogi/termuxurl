@@ -111,7 +111,7 @@ case $option in
 1 )
 
 command='--no-warnings --no-progress --no-mtime --embed-thumbnail --add-metadata -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
-echo "$command bestaudio -x --audio-format mp3" > ~/.config/youtube-dl/config
+echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
 
 printf "$GREEN"
 youtube-dl $1
@@ -121,7 +121,7 @@ printf "$NC"
 2 )
 
 command='--no-warnings --no-progress --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
-echo "$command 140" > ~/.config/youtube-dl/config
+echo "$command bestaudio" > ~/.config/youtube-dl/config
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
