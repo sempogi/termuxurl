@@ -294,7 +294,7 @@ case $url  in
                               mkdir $mp3dir
                    fi
 
-                    command="--no-warnings --embed-thumbnail --no-progress --skip-unavailable-fragments --no-mtime -i -o $mp3dir/%(title)s.%(ext)s -f"
+                    command="--no-warnings --embed-thumbnail --no-progress --skip-unavailable-fragments --no-mtime --add-metadata -i -o $mp3dir/%(title)s.%(ext)s -f"
                   
 
                     echo "Press Y to continue downloading mp3 format"
@@ -329,7 +329,7 @@ case $url  in
                         # directory doesn't exist create it for use.
                                 mkdir $mp3dir
                      fi
-                     command="--no-warnings --embed-thumbnail --all-subs --convert-subs lrc --no-progress --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
+                     command="--no-warnings --add-metadata --embed-thumbnail --all-subs --convert-subs lrc --no-progress --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
                      echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
                      printf "$GREEN"
                     youtube-dl $url
