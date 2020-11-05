@@ -288,15 +288,17 @@ case $url  in
                  echo " Create additional Folder For your Mp3"
                  echo "Folder Name: Album Or Artist Eg. TinaArena"
                   read folname
-                  orig="$folname"
-                  mod=${orig//[ ]/_}
+                 # orig="$folname"
+                 # mod=${orig//[ ]/_}
                   printf "$NC"
-                  mp3dir="$HOME/storage/shared/mp3s/$mod"   
+                  mp3dir="$HOME/storage/shared/mp3s/$folname"   
                            # check if directory exist or not
-                  if [[ ! -d $mp3dir ]];  then
+                 # if [[ ! -d $mp3dir ]];  then
                             # directory doesn't exist create it for use.
-                              mkdir $mp3dir
-                   fi
+                             # mkdir $mp3dir
+                             mkdir -p "$(realpath -m "$mp3dir")"
+                             #accept whitespace in creating directory
+                 #  fi
 
                     command="--no-warnings --embed-thumbnail --no-progress --skip-unavailable-fragments --no-mtime --add-metadata -i -o $mp3dir/%(title)s.%(ext)s -f"
                   
