@@ -305,7 +305,7 @@ case $url  in
                              #unfortunately ytdl dont accept whitespace
                    fi
 
-                    command="--no-warnings --embed-thumbnail --print-json --no-progress --skip-unavailable-fragments --no-mtime --add-metadata -i -o $mp3dir/%(title)s.%(ext)s -f"
+                    command="--no-warnings --embed-thumbnail --skip-unavailable-fragments --no-mtime --add-metadata -i -o $mp3dir/%(title)s.%(ext)s -f"
                   
 
                     echo "Press Y to continue downloading mp3 format"
