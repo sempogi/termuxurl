@@ -3,7 +3,7 @@ cd termuxurl
 git add *
 git commit -m "termux"
 #git push -f origin main
-git push -f https://github.com/sempogi/termuxurl.git
+git push -f https://"$1:$2@"github.com/sempogi/termuxurl.git
 
 
 
