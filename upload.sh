@@ -1,5 +1,5 @@
 cd termuxurl
-if ["$1"=="" -o "$2"==""];
+if ["$1"==''-o "$2"=='' ];
  then
 echo " I need username and Password"
 
