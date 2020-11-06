@@ -6,6 +6,7 @@ exit
 elif [ -z "$2" ];
 then
 echo " I need a Password"
+exit
 else
 echo "Processing....."
 fi
