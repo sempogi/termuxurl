@@ -1,6 +1,6 @@
 cd termuxurl
 #git init
-git add *.*
+git add *
 git commit -m "termux"
 git push -f origin main
 
