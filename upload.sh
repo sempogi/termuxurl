@@ -1,9 +1,13 @@
 cd termuxurl
-if [ "$1"==''-o "$2"=='' ];
+if [ -z "$1" ];
  then
 echo " I need username and Password"
-
 exit 
+elif [ -z "$2" ];
+then
+echo " I need a Password"
+else
+echo "Processing....."
 fi
 #git init
 git add *
