@@ -64,6 +64,8 @@ url=$1
 echo " Url Source:"
 printf "$BLUE"
 echo $url
+echo "Starting to play"
+mpv $url
 printf "$NC"
 sleep 5
 
@@ -224,8 +226,6 @@ printf "$NC"
 ;;
 
 esac
-
-sleep 5
 termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
 exit
 #end of youtube
