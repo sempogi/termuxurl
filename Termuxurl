@@ -131,6 +131,7 @@ echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
+
 termux-media-player play "data/data/com.termux/files/home/storage/shared/Youtube/$title.mp3"
 ;;
 
