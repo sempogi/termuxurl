@@ -137,7 +137,7 @@ termux-media-player play "/data/data/com.termux/files/home/storage/shared/Youtub
 minfo= termux-media-player info
 termux-notification --action "am start --user 0 -n com.termux/com.termux.app.TermuxActivity" --type media --media-previous "echo 'prev' " --media-play " termux-media-player play " --media-pause " termux-media-player pause " --media-next " echo 'next' "  -t "🎧Online Player: $$" -c "Playing:$minfo" --sound --vibrate 800 --priority high --type media --icon "pause" --id $$ --on-delete "exit"  --image-path "$HOME/test.png"
 
-
+sleep 20
 ;;
 
 2 )
