@@ -127,7 +127,7 @@ case $option in
 
 command='--no-warnings --no-progress --no-mtime --embed-thumbnail --add-metadata -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
-
+termux-media-player play "data/data/com.termux/files/home/storage/shared/Youtube/$title.mp3"
 printf "$GREEN"
 youtube-dl $1
 printf "$NC"
