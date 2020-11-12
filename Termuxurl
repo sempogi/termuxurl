@@ -132,11 +132,12 @@ printf "$GREEN"
 youtube-dl $1
 printf "$NC"
 
-
-termux-media-player play "/data/data/com.termux/files/home/storage/shared/Youtube/$title.mp3"
+filmp3='/data/data/com.termux/files/home/storage/shared/Youtube/"$title".mp3'
+termux-media-player play $filmp3
 #minfo= termux-media-player info
-filmp3="/data/data/com.termux/files/home/storage/shared/Youtube/$title.mp3"
+"
 termux-notification --type media --media-previous "echo 'prev' " --media-play "termux-media-player play $filmp3 " --media-pause "termux-media-player pause" --media-next "termux-media-player pause"  -t "🎧Offline Player: $url " -c " Playing: $title " --sound --vibrate 800 --priority high --type media --id $$ --on-delete " termux-media-player stop "  --image-path "$HOME/test.png"
+echo "$filmp3"
 
 sleep 30
 ;;
