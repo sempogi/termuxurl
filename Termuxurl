@@ -138,10 +138,10 @@ termux-media-player play "$filmp3"
 minfo= "$(termux-media-player info)"
 echo $filmp3 > tmp.list
 
-termux-notification --type media --media-previous "termux-media-player play '$(<tmp.list)'" --media-play "termux-media-player play" --media-pause "termux-media-player pause" --media-next "termux-media-player pause"  -t "🎧Offline Player: $title " -c " Playing: $minfo " --sound --vibrate 800 --priority high --type media --id $$ --on-delete " termux-media-player stop "  --image-path "$HOME/test.png"
+termux-notification --type media --media-previous "termux-media-player play '$(<tmp.list)'" --media-play "termux-media-player play" --media-pause "termux-media-player pause" --media-next "termux-media-player pause"  -t "🎧Offline Player: $title " -c " Playing: $filmp3 " --sound --vibrate 800 --priority high --type media --id $$ --on-delete " termux-media-player stop "  --image-path "$HOME/test.png"
 #echo "$filmp3"
 
-sleep 30
+#sleep 30
 ;;
 
 2 )
