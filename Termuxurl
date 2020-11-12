@@ -136,9 +136,10 @@ filmp3="/data/data/com.termux/files/home/storage/shared/Youtube/$title.mp3"
 filmp3= "$(realpath -m "$filmp3")"
 termux-media-player play "$filmp3"
 #minfo= termux-media-player info
+echo '$filmp3'> tmp.list
 
-termux-notification --type media --media-previous "temux-toast $filemp3" --media-play "termux-media-player play " --media-pause "termux-media-player pause" --media-next "termux-media-player pause"  -t "🎧Offline Player: $url " -c " Playing: $title " --sound --vibrate 800 --priority high --type media --id $$ --on-delete " termux-media-player stop "  --image-path "$HOME/test.png"
-echo "$filmp3"
+termux-notification --type media --media-previous "temux-toast $filemp3" --media-play "termux-media-player play $(<tmp.list)" --media-pause "termux-media-player pause" --media-next "termux-media-player pause"  -t "🎧Offline Player: $url " -c " Playing: $title " --sound --vibrate 800 --priority high --type media --id $$ --on-delete " termux-media-player stop "  --image-path "$HOME/test.png"
+#echo "$filmp3"
 
 sleep 30
 ;;
