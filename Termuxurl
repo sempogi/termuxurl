@@ -340,7 +340,7 @@ folname=$(<foldername)
                     dialog --title "SElECT" \
 --menu "Audio Format" 0 0 0 \
   MP3 "MP3" \
-  M4A "MPA" 2 >filtype
+  M4A "MPA" 2>filtype
 
                    mpmp=$(<filtype)
                    case $mpmp in
