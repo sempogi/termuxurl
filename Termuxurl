@@ -90,35 +90,31 @@ echo "             Video Grabber "
 echo "Source: "
 echo  "$1"
 echo "_________________________________"
-echo "  1. Audio only mp3"
-echo "  2. Audio Only m4a"
-echo "  3. Dowload via tor network Video"
-echo "  4. Download via tor Audio Only"
-echo "  5. 480p Video "
-echo "  6. 720  Video  "
-echo "  7. 1080p Video"
-echo "  8. 2k Video   "
-echo "  9. 4k Video    "
-echo "  0. Expert Mode"
-echo "  t. m4a playlist"
-echo "  q. quit script"
-echo "  u. update core downloader"
-echo "________________________________"
-echo ""
 
+dialog --title "Audio Video Grabber" \
+--menu "Url Source $1" 0 0 0 \
+  1 "Audio Only Mp3" \
+  2 "Audio Only M4a" \
+  3 "Download via video via tor" \
+  4 "Download Audio via tor" \
+  5 "Download 480p Video" \
+  6 "Download 720p video" \
+  7 "Download 1080p Video if available" \
+  8 "Download 2k Video if available" \
+  9 "Download 4k Video if available" \
+  0 "Expert Mode" \
+  t "Download m4a audio playlist" \
+  q "Exit Program" \
+  u "Update core downloader" 2>menu1
 
-echo ""
+                   option=$(<menu1)
 
-
-echo " Press between 0 to 9 or Enter"
-
-echo  ""
 
 
 myorder='--no-warnings --no-progress --no-mtime --yes-playlist -o /data/data/com.termux/files/home/storage/shared/Youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -f'
 command='--no-warnings --embed-thumbnail --no-mtime --all-subs -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 
-read option
+
 echo -e "Parsing Data please wait......"
 
 
