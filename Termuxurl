@@ -93,6 +93,7 @@ echo "_________________________________"
 
 dialog --title "Audio Video Grabber" \
 --menu "Url Source $1" 0 0 0 \
+  B "Best Video and Audio Available" \
   1 "Audio Only Mp3" \
   2 "Audio Only M4a" \
   3 "Download via video via tor" \
@@ -125,7 +126,7 @@ command='--no-warnings --no-mtime --embed-thumbnail --add-metadata -o /data/data
 echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
 
 printf "$GREEN"
-dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+dialog --prgbox "Extracting Mp3 $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 
 filmp3="/data/data/com.termux/files/home/storage/shared/Youtube/$title.mp3"
@@ -145,7 +146,7 @@ termux-notification --type media --media-previous "termux-media-player play '$(<
 command='--no-warnings --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command 140 " > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+dialog --prgbox "Extracting m4a $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
@@ -154,7 +155,7 @@ printf "$NC"
 command='--no-warnings --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
 printf "$GREEN"
-dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+dialog --prgbox "Downloading via tor $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
@@ -162,7 +163,7 @@ printf "$NC"
 command='--no-warnings --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+dialog --prgbox "Downloading mp3 via tor $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
@@ -170,35 +171,35 @@ printf "$NC"
 5 )
 echo "$command \"best[height<=480]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+dialog --prgbox "Downloading 480p video $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
 6 )
 echo "$command \"best[height<=760]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+dialog --prgbox "Downloading 720 video $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
 7 )
 echo "$command \"best[height<=1150]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+dialog --prgbox "Downloading 1080p video $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
 8 )
 echo "$command \"best[height<=1440]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+dialog --prgbox "Downloading 2k video $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
 9 )
 echo "$command \"best[height<=2160]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+dialog --prgbox "Downloading 4k video $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
@@ -236,11 +237,11 @@ dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
-* )
+B)
 echo -e "Finding Best Quality of Your Video"
 echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
 printf "$GREEN"
-dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+dialog --prgbox "Downloading Best Video and Audio $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
