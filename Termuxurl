@@ -125,11 +125,11 @@ echo -e "Parsing Data please wait......"
 case $option in
 1 )
 
-command='--no-warnings --no-progress --no-mtime --embed-thumbnail --add-metadata -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+command='--no-warnings --no-mtime --embed-thumbnail --add-metadata -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
 
 printf "$GREEN"
-youtube-dl $1
+dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 
 filmp3="/data/data/com.termux/files/home/storage/shared/Youtube/$title.mp3"
@@ -146,27 +146,27 @@ termux-notification --type media --media-previous "termux-media-player play '$(<
 
 2 )
 
-command='--no-warnings --no-progress --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+command='--no-warnings --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command 140 " > ~/.config/youtube-dl/config
 printf "$GREEN"
-youtube-dl $1
+dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
 3 )
 
-command='--no-warnings --no-progress --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+command='--no-warnings --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
 printf "$GREEN"
-youtube-dl $1
+dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
 4 )
-command='--no-warnings --no-progress --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+command='--no-warnings --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
 printf "$GREEN"
-youtube-dl $1
+dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
@@ -174,35 +174,35 @@ printf "$NC"
 5 )
 echo "$command \"best[height<=480]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-youtube-dl $1
+dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
 6 )
 echo "$command \"best[height<=760]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-youtube-dl $1
+dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
 7 )
 echo "$command \"best[height<=1150]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-youtube-dl $1
+dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
 8 )
 echo "$command \"best[height<=1440]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-youtube-dl $1
+dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
 9 )
 echo "$command \"best[height<=2160]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-youtube-dl $1
+dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
@@ -218,7 +218,7 @@ read fcode
 echo ""
 echo "$command $fcode" > ~/.config/youtube-dl/config
 printf "$GREEN"
-youtube-dl $1
+dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
@@ -236,7 +236,7 @@ pkg install atomicparsley
 t)
 echo "$myorder 140" > ~/.config/youtube-dl/config
 printf "$GREEN"
-youtube-dl $1
+dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
 ;;
 
@@ -270,7 +270,7 @@ echo "Title: $dlt"
         mkdir $saveto
     fi
 #command='--no-warnings --no-progress --no-mtime --all-subs -o  /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
-command="--no-warnings --no-progress --no-mtime --all-subs -o  $saveto/%(title)s.%(ext)s -f"
+command="--no-warnings --no-mtime --all-subs -o  $saveto/%(title)s.%(ext)s -f"
 
 echo -e "Finding Best Quality of Your Video $3"
 echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
@@ -359,7 +359,7 @@ folname=$(<foldername)
 
                    
                     printf "$YELLOW"
-                    dialog --prgbox "Downloading $url" "youtube-dl $url" 50 60 || youtube-dl $url
+                    dialog --prgbox "Downloading $url" "youtube-dl $url" 60 60 || youtube-dl $url
                     
                     printf "$NC"
                     title=$(youtube-dl --get-title  $url)
@@ -374,10 +374,10 @@ folname=$(<foldername)
                         # directory doesn't exist create it for use.
                                 mkdir $mp3dir
                      fi
-                     command="--no-warnings --add-metadata --embed-thumbnail --all-subs --convert-subs lrc --no-progress --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
+                     command="--no-warnings --add-metadata --embed-thumbnail --all-subs --convert-subs lrc --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
                      echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
                      printf "$GREEN"
-                    youtube-dl $url
+                    dialog --prgbox "Downloading $url" "youtube-dl $url" 50 60 || youtube-dl $url
                     printf "$NC"
                     title=$(youtube-dl --get-title  $url)
                      termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
@@ -398,10 +398,10 @@ folname=$(<foldername)
             ;;
             
            *"youtube"* )
-                command='--no-warnings --no-progress --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+                command='--no-warnings --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
                 echo "$command 140" > ~/.config/youtube-dl/config
                  printf "$GREEN"
-                 youtube-dl $1
+                 dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
                  printf "$NC"
             ;;
 
