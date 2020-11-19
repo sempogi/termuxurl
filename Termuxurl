@@ -315,7 +315,7 @@ $DIALOG --title "Playlist Detected" --clear \
 
 
 folname= $(<foldername)
-rm -f foldername
+
 
                   
                   #whitespace workaround
