@@ -314,7 +314,7 @@ $DIALOG --title "Playlist Detected" --clear \
         --inputbox "Please Enter Folder Name" 10 30 "mp3s" 2>foldername
 
 
-folname= $(<foldername)
+folname=$(<foldername)
 
 
                   
@@ -337,10 +337,14 @@ folname= $(<foldername)
                     command="--no-warnings --embed-thumbnail --skip-unavailable-fragments --no-mtime --add-metadata -i -o $mp3dir/%(title)s.%(ext)s -f"
                   
 
-                    echo "Press Y to continue downloading mp3 format"
-                   read mpmp
+                    dialog --title "SElECT" \
+--menu "Audio Format" 0 0 0 \
+  MP3 "MP3" \
+  M4A "MPA" 2 >filtype
+
+                   mpmp=$(<filtype)
                    case $mpmp in
-                    y)
+                    MP3)
                      
                     echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
                      ;;
