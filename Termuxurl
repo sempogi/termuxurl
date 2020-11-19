@@ -116,7 +116,7 @@ echo  ""
 
 
 myorder='--no-warnings --no-progress --no-mtime --yes-playlist -o /data/data/com.termux/files/home/storage/shared/Youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -f'
-command='--no-warnings --embed-thumbnail --no-progress --no-mtime --all-subs -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+command='--no-warnings --embed-thumbnail --no-mtime --all-subs -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 
 read option
 echo -e "Parsing Data please wait......"
@@ -230,7 +230,7 @@ u)
 echo "Trying to fix/update your package."
 pip install --upgrade youtube_dl
 pkg install atomicparsley
-
+pkg install dialog
 ;;
 
 t)
