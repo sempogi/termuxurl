@@ -92,7 +92,7 @@ echo  "$1"
 echo "_________________________________"
 
 dialog --title "Audio Video Grabber" \
---menu "Url Source $1" 0 0 0 \
+--menu "Title: $title Url Source $1" 0 0 0 \
   B "Best Video and Audio Available" \
   1 "Audio Only Mp3" \
   2 "Audio Only M4a" \
