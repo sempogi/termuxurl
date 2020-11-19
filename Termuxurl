@@ -308,9 +308,20 @@ case $url  in
          *"/playlist"* )
                 printf "$GREEN"
                  echo "Playlist Link Detected"
-                 echo " Create additional Folder For your Mp3"
-                 echo "Folder Name: Album Or Artist Eg. TinaArena"
-                  read folname
+                 DIALOG=${DIALOG=dialog}
+
+$DIALOG --title "Playlist Detected" --clear \
+        --inputbox "Please Enter Folder Name" 10 30 "mp3s" 2>foldername
+case "$?" in
+*)
+exit
+;;
+0)
+
+folname= $(<foldername)
+rm -f foldername
+;;
+esac
                   
                   #whitespace workaround
                   orig="$folname"
