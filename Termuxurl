@@ -305,14 +305,14 @@ case $url  in
          *"/playlist"* )
                 printf "$GREEN"
                  echo "Playlist Link Detected"
-                 folname=$(<foldername)
+                 
                  DIALOG=${DIALOG=dialog}
 
 $DIALOG --title "Playlist Detected" --clear \
-        --inputbox "Please Enter Folder Name" 10 30 "$folname" 2>foldername
+        --inputbox "Please Enter Folder Name" 10 30 "$(<foldername)" 2>foldername
 
 
-
+folname=$(<foldername)
 
 
                   
