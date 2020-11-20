@@ -13,7 +13,7 @@ echo "Updating Script..."
 echo ""
 curl https://raw.githubusercontent.com/sempogi/termuxurl/main/Termuxurl -o ~/bin/termux-url-opener
 dos2unix ~/bin/termux-url-opener
-
+pkg install mpv
 ytdir=~/storage/shared/youtube
 if [[ ! -d $ytdir ]]; then
         # directory doesn't exist create it for use.
@@ -131,7 +131,7 @@ printf "$NC"
 
 filmp3="/data/data/com.termux/files/home/storage/shared/Youtube/$title.mp3"
 filmp3= "$(realpath -m "$filmp3")"
-termux-media-player play "$filmp3"
+termux-media-player play "$filmp3" || mpv "$filmp3"
 minfo= "$(termux-media-player info)"
 echo $filmp3 > tmp.list
 
