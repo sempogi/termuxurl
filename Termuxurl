@@ -338,6 +338,7 @@ folname=$(<foldername)
 --menu "Audio Format" 0 0 0 \
   MP3 "MP3-Standard Audio.Wide Compatability,Slower." \
   M4A "M4a-Faster Download, Good Audio Quality,Less Compa." \
+  MP4TOMP3 "DOWNLOAD AND CONVERT" \
   MP4 "Video Format " 2>filtype
 
                    mpmp=$(<filtype)
@@ -361,8 +362,14 @@ folname=$(<foldername)
                     printf "$YELLOW"
                  dialog --prgbox "Downloading $url" "youtube-dl $url" 60 60 || youtube-dl $url
                   #youtube-dl $url 
-                    cd $mp3dir
-                    find . -name "*.mp4" -exec ffmpeg -i {} -ab 160k -map_metadata 0 -id3v2_version 3 {}.mp3 \;
+                    #cd $mp3dir
+                     case $mpmp in
+                    MP4TOMP3)
+                    find $mp3dir -name "*.mp4" -exec ffmpeg -i {} -ab 160k -map_metadata 0 -id3v2_version 3 {}.mp3 \;
+                    find $mp3dir -name "*.mp4*" -exec rm
+                    ;;
+                    esac
+ 
                     printf "$NC"
                     title=$(youtube-dl --get-title  $url)
                     termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
