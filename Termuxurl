@@ -356,8 +356,8 @@ folname=$(<foldername)
 
                    
                     printf "$YELLOW"
-                    dialog --prgbox "Downloading $url" "youtube-dl $url" 60 60 || youtube-dl $url
-                    
+                 # dialog --prgbox "Downloading $url" "youtube-dl $url" 60 60 || youtube-dl $url
+                   youtube-dl $url 
                     printf "$NC"
                     title=$(youtube-dl --get-title  $url)
                     termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
