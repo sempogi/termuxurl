@@ -361,6 +361,8 @@ folname=$(<foldername)
                     printf "$YELLOW"
                  dialog --prgbox "Downloading $url" "youtube-dl $url" 60 60 || youtube-dl $url
                   #youtube-dl $url 
+                    cd $mp3dir
+                    find . -name "*.mp4" -exec ffmpeg -i {} -ab 160k -map_metadata 0 -id3v2_version 3 {}.mp3 \;
                     printf "$NC"
                     title=$(youtube-dl --get-title  $url)
                     termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
