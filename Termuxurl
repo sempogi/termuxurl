@@ -331,7 +331,7 @@ folname=$(<foldername)
                              #unfortunately ytdl dont accept whitespace
                    fi
 
-                    command="--no-warnings --embed-thumbnail --skip-unavailable-fragments --no-mtime --add-metadata -i -o $mp3dir/%(title)s.%(ext)s -f"
+                    command="--ignore-errors --no-warnings --embed-thumbnail --skip-unavailable-fragments --no-mtime --add-metadata -o $mp3dir/%(title)s.%(ext)s -f"
                   
 
                     dialog --title "SElECT" \
