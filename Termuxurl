@@ -366,7 +366,7 @@ folname=$(<foldername)
                      case $mpmp in
                     MP4TOMP3)
                     find $mp3dir -name "*.mp4" -exec ffmpeg -i {} -ab 160k -map_metadata 0 -id3v2_version 3 {}.mp3 \;
-                    find $mp3dir -name "*.mp4*" -exec rm -f {} \;
+                    find $mp3dir -name "*.mp4" -exec rm -f {} \;
                     
                      ;;
                     esac
