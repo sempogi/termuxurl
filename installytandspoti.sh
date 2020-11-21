@@ -3,7 +3,7 @@
 echo "Updating default packages"
 apt update && apt -y upgrade
 pkg install git
-dkpg --configure -a
+dpkg --configure -a
 pkg install python
 apt install python
 python3 -m pip install --upgrade pip
