@@ -346,7 +346,7 @@ folname=$(<foldername)
                    case $mpmp in
                     MP3)
                      
-                    echo "$command best --extract-audio --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
+                    echo "$command bestaudio --extract-audio" > ~/.config/youtube-dl/config
                      ;;
                      
                     M4A)
