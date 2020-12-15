@@ -338,6 +338,7 @@ folname=$(<foldername)
                     dialog --title "SElECT" \
 --menu "Audio Format" 0 0 0 \
   MP3 "MP3-Standard Audio.Wide Compatability,Slower." \
+  BEST "Best Audio Download" \
   M4A "M4a-Faster Download, Good Audio Quality,Less Compa." \
   MP4TOMP3 "DOWNLOAD AND CONVERT" \
   MP4 "Video Format " 2>filtype
@@ -346,7 +347,7 @@ folname=$(<foldername)
                    case $mpmp in
                     MP3)
                      
-                    echo "$command bestaudio --extract-audio" > ~/.config/youtube-dl/config
+                    echo "$command 140 -x --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
                      ;;
                      
                     M4A)
@@ -354,7 +355,13 @@ folname=$(<foldername)
                   
                      echo "$command 140 " > ~/.config/youtube-dl/config
                      ;;
+                     BEST)
+                      echo "$command bestaudio --extract-audio" > ~/.config/youtube-dl/config
+                     
+
+                     ;;
                     *)
+                     
                     echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
                      ;; 
                      esac
