@@ -123,7 +123,7 @@ case $option in
 1 )
 
 command='--no-warnings --no-mtime --embed-thumbnail --add-metadata -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
-echo "$command 140 -x --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
+echo "$command bestaudio -x --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
 
 printf "$GREEN"
 dialog --prgbox "Extracting Mp3 $1" "youtube-dl $1" 50 60 || youtube-dl $1
@@ -161,7 +161,7 @@ printf "$NC"
 
 4 )
 command='--no-warnings --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
-echo "$command 140 -x --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
+echo "$command bestaudio -x --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
 printf "$GREEN"
 dialog --prgbox "Downloading mp3 via tor $1" "youtube-dl $1" 50 60 || youtube-dl $1
 printf "$NC"
@@ -347,7 +347,7 @@ folname=$(<foldername)
                    case $mpmp in
                     MP3)
                      
-                    echo "$command 140 -x --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
+                    echo "$command bestaudio -x --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
                      ;;
                      
                     M4A)
