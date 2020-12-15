@@ -13,7 +13,7 @@ echo "Updating Script..."
 echo ""
 curl https://raw.githubusercontent.com/sempogi/termuxurl/main/Termuxurl -o ~/bin/termux-url-opener
 dos2unix ~/bin/termux-url-opener
-
+#
 ytdir=~/storage/shared/youtube
 if [[ ! -d $ytdir ]]; then
         # directory doesn't exist create it for use.
