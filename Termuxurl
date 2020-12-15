@@ -13,7 +13,7 @@ echo "Updating Script..."
 echo ""
 curl https://raw.githubusercontent.com/sempogi/termuxurl/main/Termuxurl -o ~/bin/termux-url-opener
 dos2unix ~/bin/termux-url-opener
-pkg install mpv
+#
 ytdir=~/storage/shared/youtube
 if [[ ! -d $ytdir ]]; then
         # directory doesn't exist create it for use.
@@ -64,20 +64,6 @@ url=$1
 echo " Url Source:"
 printf "$BLUE"
 echo $url
-#echo "Starting to play"
-
-
-
-
-#termux-notification --type media --media-previous "echo 'prev' " --media-play " termux-toast $url " --media-pause " echo 'pause' " --media-next " echo 'next' "  -t "🎧Online Player: $$" -c "Playing: $url" --sound --vibrate 800 --priority high --type media --icon "pause" --id $$ --on-delete "exit"  --image-path "$HOME/test.png"
-
-
-
-
-
-
-
-#mpv $url
 printf "$NC"
 sleep 5
 
@@ -90,80 +76,72 @@ echo "             Video Grabber "
 echo "Source: "
 echo  "$1"
 echo "_________________________________"
+echo "  1. Audio only mp3"
+echo "  2. Audio Only m4a"
+echo "  3. Dowload via tor network Video"
+echo "  4. Download via tor Audio Only"
+echo "  5. 480p Video "
+echo "  6. 720  Video  "
+echo "  7. 1080p Video"
+echo "  8. 2k Video   "
+echo "  9. 4k Video    "
+echo "  0. Expert Mode"
+echo "  t. m4a playlist"
+echo "  q. quit script"
+echo "  u. update core downloader"
+echo "________________________________"
+echo ""
 
-dialog --title "Audio Video Grabber" \
---menu "Title: $title Url Source $1" 0 0 0 \
-  B "Best Video and Audio Available" \
-  1 "Audio Only Mp3" \
-  2 "Audio Only M4a" \
-  3 "Download via video via tor" \
-  4 "Download Audio via tor" \
-  5 "Download 480p Video" \
-  6 "Download 720p video" \
-  7 "Download 1080p Video if available" \
-  8 "Download 2k Video if available" \
-  9 "Download 4k Video if available" \
-  0 "Expert Mode" \
-  t "Download m4a audio playlist" \
-  q "Exit Program" \
-  u "Update core downloader" 2>menu1
 
-                   option=$(<menu1)
+echo ""
 
+
+echo " Press between 0 to 9 or Enter"
+
+echo  ""
 
 
 myorder='--no-warnings --no-progress --no-mtime --yes-playlist -o /data/data/com.termux/files/home/storage/shared/Youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -f'
-command='--no-warnings --embed-thumbnail --no-mtime --all-subs -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+command='--no-warnings --embed-thumbnail --no-progress --no-mtime --all-subs -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 
-
+read option
 echo -e "Parsing Data please wait......"
 
 
 case $option in
 1 )
 
-command='--no-warnings --no-mtime --embed-thumbnail --add-metadata -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+command='--no-warnings --no-progress --no-mtime --embed-thumbnail --add-metadata -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
 
 printf "$GREEN"
-dialog --prgbox "Extracting Mp3 $1" "youtube-dl $1" 50 60 || youtube-dl $1
+youtube-dl $1
 printf "$NC"
-
-filmp3="/data/data/com.termux/files/home/storage/shared/Youtube/$title.mp3"
-filmp3= "$(realpath -m "$filmp3")"
-termux-media-player play "$filmp3" || mpv "$filmp3"
-minfo= "$(termux-media-player info)"
-echo $filmp3 > tmp.list
-
-termux-notification --type media --media-previous "termux-media-player play '$(<tmp.list)'" --media-play "termux-media-player play" --media-pause "termux-media-player pause" --media-next "termux-media-player pause"  -t "🎧Offline Player: $title " -c " Playing: $filmp3 " --sound --vibrate 800 --priority high --type media --id $$ --on-delete " termux-media-player stop "  --image-path "$HOME/test.png"
-#echo "$filmp3"
-
-#sleep 30
 ;;
 
 2 )
 
-command='--no-warnings --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+command='--no-warnings --no-progress --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command 140 " > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Extracting m4a $1" "youtube-dl $1" 50 60 || youtube-dl $1
+youtube-dl $1
 printf "$NC"
 ;;
 
 3 )
 
-command='--no-warnings --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+command='--no-warnings --no-progress --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
 printf "$GREEN"
-dialog --prgbox "Downloading via tor $1" "youtube-dl $1" 50 60 || youtube-dl $1
+youtube-dl $1
 printf "$NC"
 ;;
 
 4 )
-command='--no-warnings --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+command='--no-warnings --no-progress --no-mtime --all-subs --proxy socks5://127.0.0.1:9050  -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading mp3 via tor $1" "youtube-dl $1" 50 60 || youtube-dl $1
+youtube-dl $1
 printf "$NC"
 ;;
 
@@ -171,35 +149,35 @@ printf "$NC"
 5 )
 echo "$command \"best[height<=480]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading 480p video $1" "youtube-dl $1" 50 60 || youtube-dl $1
+youtube-dl $1
 printf "$NC"
 ;;
 
 6 )
 echo "$command \"best[height<=760]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading 720 video $1" "youtube-dl $1" 50 60 || youtube-dl $1
+youtube-dl $1
 printf "$NC"
 ;;
 
 7 )
 echo "$command \"best[height<=1150]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading 1080p video $1" "youtube-dl $1" 50 60 || youtube-dl $1
+youtube-dl $1
 printf "$NC"
 ;;
 
 8 )
 echo "$command \"best[height<=1440]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading 2k video $1" "youtube-dl $1" 50 60 || youtube-dl $1
+youtube-dl $1
 printf "$NC"
 ;;
 
 9 )
 echo "$command \"best[height<=2160]\"" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading 4k video $1" "youtube-dl $1" 50 60 || youtube-dl $1
+youtube-dl $1
 printf "$NC"
 ;;
 
@@ -215,7 +193,7 @@ read fcode
 echo ""
 echo "$command $fcode" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+youtube-dl $1
 printf "$NC"
 ;;
 
@@ -227,25 +205,27 @@ u)
 echo "Trying to fix/update your package."
 pip install --upgrade youtube_dl
 pkg install atomicparsley
-pkg install dialog
+
 ;;
 
 t)
 echo "$myorder 140" > ~/.config/youtube-dl/config
 printf "$GREEN"
-dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+youtube-dl $1
 printf "$NC"
 ;;
 
-B)
+* )
 echo -e "Finding Best Quality of Your Video"
 echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
 printf "$GREEN"
-dialog --prgbox "Downloading Best Video and Audio $1" "youtube-dl $1" 50 60 || youtube-dl $1
+youtube-dl $1
 printf "$NC"
 ;;
 
 esac
+
+sleep 5
 termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
 exit
 #end of youtube
@@ -267,7 +247,7 @@ echo "Title: $dlt"
         mkdir $saveto
     fi
 #command='--no-warnings --no-progress --no-mtime --all-subs -o  /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
-command="--no-warnings --no-mtime --all-subs -o  $saveto/%(title)s.%(ext)s -f"
+command="--no-warnings --no-progress --no-mtime --all-subs -o  $saveto/%(title)s.%(ext)s -f"
 
 echo -e "Finding Best Quality of Your Video $3"
 echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
@@ -305,16 +285,9 @@ case $url  in
          *"/playlist"* )
                 printf "$GREEN"
                  echo "Playlist Link Detected"
-                 
-                 DIALOG=${DIALOG=dialog}
-
-$DIALOG --title "Playlist Detected" --clear \
-        --inputbox "Please Enter Folder Name" 10 30 "$(<foldername)" 2>foldername
-
-
-folname=$(<foldername)
-
-
+                 echo " Create additional Folder For your Mp3"
+                 echo "Folder Name: Album Or Artist Eg. TinaArena"
+                  read folname
                   
                   #whitespace workaround
                   orig="$folname"
@@ -332,46 +305,28 @@ folname=$(<foldername)
                              #unfortunately ytdl dont accept whitespace
                    fi
 
-                    command="--ignore-errors --no-warnings --embed-thumbnail --skip-unavailable-fragments --no-mtime --add-metadata -o $mp3dir/%(title)s.%(ext)s -f"
+                    command="-f "bestaudio/best"--no-warnings --embed-thumbnail --skip-unavailable-fragments --no-mtime --add-metadata -i -o $mp3dir/%(title)s.%(ext)s -f"
                   
-
-                    dialog --title "SElECT" \
---menu "Audio Format" 0 0 0 \
-  MP3 "MP3-Standard Audio.Wide Compatability,Slower." \
-  M4A "M4a-Faster Download, Good Audio Quality,Less Compa." \
-  MP4TOMP3 "DOWNLOAD AND CONVERT" \
-  MP4 "Video Format " 2>filtype
-
-                   mpmp=$(<filtype)
+#-f "bestaudio/best" -ciw
+                    echo "Press Y to continue downloading mp3 format"
+                   read mpmp
                    case $mpmp in
-                    MP3)
+                    y)
                      
-                    echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
+                    echo "$command -v --extract-audio --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
                      ;;
                      
-                    M4A)
+                    *)
                       
                   
                      echo "$command 140 " > ~/.config/youtube-dl/config
                      ;;
-                    *)
-                    echo "$command best" > ~/.config/youtube-dl/config # " -f best " > best video+audio
-                     ;; 
+
                      esac
 
                    
                     printf "$YELLOW"
-                 dialog --prgbox "Downloading $url" "youtube-dl $url" 60 60 || youtube-dl $url
-                  #youtube-dl $url 
-                    #cd $mp3dir
-                     case $mpmp in
-                    MP4TOMP3)
-                    find $mp3dir -name "*.mp4" -exec ffmpeg -i {} -ab 160k -map_metadata 0 -id3v2_version 3 {}.mp3 \;
-                    find $mp3dir -name "*.mp4" -exec rm -f {} \;
-                    
-                     ;;
-                    esac
- 
+                    youtube-dl $url
                     printf "$NC"
                     title=$(youtube-dl --get-title  $url)
                     termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
@@ -385,10 +340,10 @@ folname=$(<foldername)
                         # directory doesn't exist create it for use.
                                 mkdir $mp3dir
                      fi
-                     command="--no-warnings --add-metadata --embed-thumbnail --all-subs --convert-subs lrc --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
+                     command="--no-warnings --add-metadata --embed-thumbnail --all-subs --convert-subs lrc --no-progress --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
                      echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
                      printf "$GREEN"
-                    dialog --prgbox "Downloading $url" "youtube-dl $url" 50 60 || youtube-dl $url
+                    youtube-dl $url
                     printf "$NC"
                     title=$(youtube-dl --get-title  $url)
                      termux-notification -t "Download Complete" -c "$title" --sound --vibrate 800 --priority high
@@ -409,10 +364,10 @@ folname=$(<foldername)
             ;;
             
            *"youtube"* )
-                command='--no-warnings --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+                command='--no-warnings --no-progress --no-mtime -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
                 echo "$command 140" > ~/.config/youtube-dl/config
                  printf "$GREEN"
-                 dialog --prgbox "Downloading $1" "youtube-dl $1" 50 60 || youtube-dl $1
+                 youtube-dl $1
                  printf "$NC"
             ;;
 
