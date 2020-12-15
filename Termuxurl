@@ -305,15 +305,15 @@ case $url  in
                              #unfortunately ytdl dont accept whitespace
                    fi
 
-                    command="--no-warnings --embed-thumbnail --skip-unavailable-fragments --no-mtime --add-metadata -i -o $mp3dir/%(title)s.%(ext)s -f"
+                    command="-f "bestaudio/best"--no-warnings --embed-thumbnail --skip-unavailable-fragments --no-mtime --add-metadata -i -o $mp3dir/%(title)s.%(ext)s -f"
                   
-
+#-f "bestaudio/best" -ciw
                     echo "Press Y to continue downloading mp3 format"
                    read mpmp
                    case $mpmp in
                     y)
                      
-                    echo "$command 140 -x --audio-format mp3" > ~/.config/youtube-dl/config
+                    echo "$command -v --extract-audio --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
                      ;;
                      
                     *)
