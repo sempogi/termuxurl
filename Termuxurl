@@ -393,7 +393,7 @@ folname=$(<foldername)
                                 mkdir $mp3dir
                      fi
                      command="--no-warnings --add-metadata --embed-thumbnail --all-subs --convert-subs lrc --no-mtime -o $mp3dir/%(title)s.%(ext)s -f"
-                     echo "$command best -x --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
+                     echo "$command bestaudio -x --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
                      printf "$GREEN"
                     dialog --prgbox "Downloading $url" "youtube-dl $url" 50 60 || youtube-dl $url
                     printf "$NC"
