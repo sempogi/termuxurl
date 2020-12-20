@@ -122,7 +122,7 @@ echo -e "Parsing Data please wait......"
 case $option in
 1 )
 
-command='--no-warnings --no-mtime --embed-thumbnail --add-metadata -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
+command='--no-warnings --no-mtime --embed-thumbnail --convert-subs lrc --add-metadata -o /data/data/com.termux/files/home/storage/shared/Youtube/%(title)s.%(ext)s -f'
 echo "$command bestaudio -x --audio-quality 0 --audio-format mp3" > ~/.config/youtube-dl/config
 
 printf "$GREEN"
